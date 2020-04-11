@@ -9,7 +9,7 @@ L.tileLayer(
       '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
       'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>,' +
       "The New York Times",
-    id: "mapbox/light-v10",
+    id: "mapbox/dark-v10",
     tileSize: 512,
     zoomOffset: -1,
     zoom: 16
@@ -47,7 +47,7 @@ function style(feature) {
     color: '#000000',
     weight: 0.5,
     opacity: 1,
-    fillOpacity: 0.8,
+    fillOpacity: 0.5,
   };
 }
 
