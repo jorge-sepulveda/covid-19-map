@@ -1,9 +1,9 @@
-var map = L.map("mapid").setView([39.74739, -105], 4);
+var map = L.map("mapid").setView([37.8, -94], 5);
 
 L.tileLayer(
   "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZ3NlcHVsdmVkYTk2IiwiYSI6ImNrOHcxNWxveTA5bHkzZm1jZnVia2JpbDEifQ.uItzrq1zGYszzvQCGd3Erg",
   {
-    maxZoom: 18,
+    maxZoom: 15,
     attribution:
       'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
       '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
@@ -12,6 +12,7 @@ L.tileLayer(
     id: "mapbox/light-v10",
     tileSize: 512,
     zoomOffset: -1,
+    zoom: 16
   }
 ).addTo(map);
 
@@ -20,23 +21,23 @@ L.geoJson(data).addTo(map);
 // Based on Arcgis Geometric Interval for 9 classes
 function getColor(d) {
   return d > 15000
-    ? "#084081"
+    ? "#67001f"
     : d > 4996
-    ? "#0868ac"
+    ? "#980043"
     : d > 1239
-    ? "#2b8cbe"
+    ? "#ce1256"
     : d > 307
-    ? "#4eb3d3"
+    ? "#e7298a"
     : d > 76
-    ? "#7bccc4"
+    ? "#df65b0"
     : d > 19
-    ? "#a8ddb5"
+    ? "#c994c7"
     : d > 5
-    ? "#ccebc5"
+    ? "#d4b9da"
     : d > 1
-    ? "#e0f3db"
+    ? "#e7e1ef"
     : d > 0
-    ? "#f7fcf0"
+    ? "#f7f4f9"
     : "#FFFFFF";
 }
 
