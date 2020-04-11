@@ -47,7 +47,7 @@ function style(feature) {
     color: '#000000',
     weight: 0.5,
     opacity: 1,
-    fillOpacity: 0.75,
+    fillOpacity: 0.8,
   };
 }
 
