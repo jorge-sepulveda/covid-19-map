@@ -16,7 +16,8 @@ L.tileLayer(
   }
 ).addTo(map);
 
-L.geoJson(data).addTo(map);
+//L.geoJson(data).addTo(map);
+//L.geoJson.ajax("https://raw.githubusercontent.com/jorge-sepulveda/covid-19-data/master/counties-with-cases.json").addTo(map)
 
 // Based on Arcgis Geometric Interval for 9 classes
 function getColor(d) {
@@ -51,7 +52,7 @@ function style(feature) {
   };
 }
 
-L.geoJson(data, { style: style }).addTo(map);
+//L.geoJson(data, { style: style }).addTo(map);
 
 var geojson;
 //listeners
@@ -73,6 +74,7 @@ function highlightFeature(e) {
 }
 
 function resetHighlight(e) {
+  console.log("resetHighlight")
   geojson.resetStyle(e.target);
   info.update();
 }
@@ -89,10 +91,16 @@ function onEachFeature(feature, layer) {
   });
 }
 
-geojson = L.geoJson(data, {
+geojson = L.geoJson.ajax("https://raw.githubusercontent.com/jorge-sepulveda/covid-19-data/master/counties-with-cases.json", {
   style: style,
   onEachFeature: onEachFeature,
 }).addTo(map);
+
+
+/*geojson = L.geoJson(data, {
+  style: style,
+  onEachFeature: onEachFeature,
+}).addTo(map);*/
 
 var info = L.control();
 
