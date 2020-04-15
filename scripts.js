@@ -48,7 +48,7 @@ function style(feature) {
     color: '#000000',
     weight: 0.5,
     opacity: 1,
-    fillOpacity: 0.5,
+    fillOpacity: 0.8,
   };
 }
 
@@ -64,7 +64,7 @@ function highlightFeature(e) {
     weight: 5,
     color: "#ffffff",
     dashArray: "",
-    fillOpacity: 0.7,
+    fillOpacity: 1,
   });
 
   if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
