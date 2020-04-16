@@ -20,31 +20,24 @@ L.tileLayer(
 //L.geoJson.ajax("https://raw.githubusercontent.com/jorge-sepulveda/covid-19-data/master/counties-with-cases.json").addTo(map)
 
 // Based on Arcgis Geometric Interval for 9 classes
-function getColor(d) {
-  return d > 15000
-    ? "#67001f"
-    : d > 4996
+function getColor(cases,pop)  {
+  d = (cases/pop)*100000
+  return d > 1000
     ? "#980043"
-    : d > 1239
-    ? "#ce1256"
-    : d > 307
-    ? "#e7298a"
-    : d > 76
+    : d > 500
+    ? "#dd1c77"
+    : d > 100
     ? "#df65b0"
-    : d > 19
+    : d > 10
     ? "#c994c7"
-    : d > 5
-    ? "#d4b9da"
     : d > 1
-    ? "#e7e1ef"
-    : d > 0
-    ? "#f7f4f9"
-    : "#FFFFFF";
+    ? "#d4b9da"
+    : "#f1eef6";
 }
 
 function style(feature) {
   return {
-    fillColor: getColor(feature.properties.cases),
+    fillColor: getColor(feature.properties.cases, feature.properties.POPESTIMATE2019 ),
     color: '#000000',
     weight: 0.5,
     opacity: 1,
@@ -114,13 +107,15 @@ info.onAdd = function (map) {
 info.update = function (props) {
   console.log(props);
   this._div.innerHTML =
-    "<h4>Infected Counties</h4>" +
+    "<h4>Infected Cases per 100,000 People</h4>" +
     (props
       ? "County: <b>" +
         props.NAME +
         "</b>" +
+        "</br>Infection Rate: " +
+        ((props.cases/props.POPESTIMATE2019)*100000).toFixed(2) +
         "</br>Cases: " +
-        props.cases +
+        props.cases + 
         "</br>Deaths: " +
         props.deaths
       : "Hover over a county to find testing info");
@@ -133,13 +128,13 @@ var legend = L.control({position: 'bottomright'});
 legend.onAdd = function (map) {
 
     var div = L.DomUtil.create('div', 'info legend'),
-        grades = [0, 1, 5, 19, 76, 307, 1239, 4996, 15000],
-        labels = [];
+        grades = [0, 1, 10,100, 500, 1000],
+        labels = ['#f1eef6','#d4b9da','#c994c7','#df65b0','#dd1c77', '#980043'];
 
     // loop through our density intervals and generate a label with a colored square for each interval
     for (var i = 0; i < grades.length; i++) {
         div.innerHTML +=
-            '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+            '<i style="background:' + labels[i] + '"></i> ' +
             grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
     }
 
