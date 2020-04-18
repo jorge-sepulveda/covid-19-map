@@ -9,7 +9,7 @@ L.tileLayer(
       '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
       'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>,' +
       "The New York Times",
-    id: "mapbox/dark-v10",
+    id: "mapbox/light-v9",
     tileSize: 512,
     zoomOffset: -1,
     zoom: 16
@@ -23,16 +23,16 @@ L.tileLayer(
 function getColor(cases,pop)  {
   d = (cases/pop)*100000
   return d > 1000
-    ? "#980043"
+    ? "#ae8080"
     : d > 500
-    ? "#dd1c77"
+    ? "#d18080"
     : d > 100
-    ? "#df65b0"
+    ? "#fc8b8b"
     : d > 10
-    ? "#c994c7"
+    ? "#fdc4c4"
     : d > 1
-    ? "#d4b9da"
-    : "#f1eef6";
+    ? "#fde6e6"
+    : "#ffffff";
 }
 
 function style(feature) {
@@ -41,7 +41,7 @@ function style(feature) {
     color: '#000000',
     weight: 0.5,
     opacity: 1,
-    fillOpacity: 0.8,
+    fillOpacity: 0.85,
   };
 }
 
@@ -54,10 +54,10 @@ function highlightFeature(e) {
   var layer = e.target;
 
   layer.setStyle({
-    weight: 5,
-    color: "#ffffff",
+    weight: 2,
+    color: "#000000",
     dashArray: "",
-    fillOpacity: 0.5,
+    fillOpacity: 1,
   });
 
   if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
@@ -129,7 +129,7 @@ legend.onAdd = function (map) {
 
     var div = L.DomUtil.create('div', 'info legend'),
         grades = [0, 1, 10,100, 500, 1000],
-        labels = ['#f1eef6','#d4b9da','#c994c7','#df65b0','#dd1c77', '#980043'];
+        labels = ['#ffffff','#fde6e6','#fdc4c4','#fc8b8b','#d18080', '#ae8080'];
 
     // loop through our density intervals and generate a label with a colored square for each interval
     for (var i = 0; i < grades.length; i++) {
