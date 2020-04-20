@@ -115,7 +115,7 @@ info.update = function (props) {
         "</br>Infection Rate: " +
         ((props.cases/props.POPESTIMATE2019)*100000).toFixed(2) +
         "</br>Cases: " +
-        props.cases + 
+        props.cases + '/100,000 People' +  
         "</br>Deaths: " +
         props.deaths
       : "Hover over a county to find testing info");
